@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel ="stylesheet" href="{% static 'css/login.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+
+<br>
+
+<div class="login">
+<br><br><br>
+<center>
+<img src="\static\img\login-header.jpg" class="login-header-image">
+</center>
+<div class="login-heading">
+    Get in! And buy from the best.
+</div>
+<div class="well login-box center-block">
+    <form name="login" method = "POST">
+      {% csrf_token %}
+      <input type="text" class="form-control" placeholder="Username" name="username" />
+
+      <input type="password" class="form-control" id="pass" placeholder="Password" name="password" />
+      
+      <button class="btn btn-primary" type="submit">Login</button>
+      <br>
+      <a href="" class="forgot-password">New user? SignUp Now!</a>
+  </div>
+  </form>
+  </div>
+
+{% endblock content %}

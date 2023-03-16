@@ -1,0 +1,19 @@
+body{
+    background-color: white;
+}
+.df-messenger{
+    z-index: 1;
+}
+
+@media only screen and (max-width: 600px) {
+    .chat-wrapper {
+        height: 90% !important;
+    }
+    #messageList{
+        background-color: black;
+    }
+    .df-messenger-chat-background-color{
+        background-color: black;
+
+    }
+  }

@@ -1,0 +1,209 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/productCatalog.css' %}">
+<br><br><br>
+
+<!--For Desktop View main Column division-->
+<div class="row product-main-div">
+    <div class="col-sm-4 product-filter-col">
+        <div class="product-filter-header">
+            Filter your options..
+        </div>
+       <!--For Desktop view filter column-->
+       <div class="input-group input-search-box">
+        <input type="text" class="form-control border" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button">Search</button>
+        </div>
+       </div>
+     
+
+       <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+          Default checkbox
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+        <label class="form-check-label" for="flexCheckChecked">
+          Checked checkbox
+        </label>
+        
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+        <label class="form-check-label" for="flexCheckChecked">
+          Checked checkbox
+        </label>
+        
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+        <label class="form-check-label" for="flexCheckChecked">
+          Checked checkbox
+        </label>
+        
+      </div>
+      <label for="customRange2" class="form-label">Set your budget</label><br>
+    <input type="range" class="form-range" min="0" max="5" id="customRange2"><br>
+      <button class="btn btn-primary filter-btn-desktop">Filter</button>
+    </div>
+
+    
+
+    <div class="col-sm-8 product-display-col">
+        <!--For Desktop view product column-->
+       
+        <div class="container container-products">
+            <div class="row row-cols-4 row-products">
+              {% for prod in allProd %}
+              <div class="col col-products ">
+                
+                <div class="card card-products">
+                    <img src="{{prod.image.url}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <p class="card-title">{{prod.name}}</p>
+                      <p class="text-muted p-0">{{prod.desc}}</p>
+                      <p class="card-text">{{prod.price}}</p>
+                      <div class="container">
+                        <button type="button" class="btn btn-primary buy-button">Buy Now</button>
+                        <button type="button" class="btn btn-primary add-button">Add to cart</button>
+                    </div>
+                      
+                    </div>
+                  </div>
+                  
+              </div>
+        
+              {% endfor %}
+             
+
+             <!--  <div class="col col-products">
+                <div class="card card-products">
+                    <img src="\static\img\football.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <p class="card-title">Bat</p>
+                      <p class="text-muted p-0">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <p class="card-text">Price : $20</p>
+                      <div class="container">
+                        <button type="button" class="btn btn-primary buy-button">Buy Now</button>
+                        <button type="button" class="btn btn-primary add-button">Add to cart</button>
+                    </div>
+                      
+                    </div>
+                  </div>
+              </div>
+              <div class="col col-products">
+                <div class="card card-products">
+                    <img src="\static\img\football.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <p class="card-title">Jersey</p>
+                      <p class="text-muted p-0">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <p class="card-text">Price : $20</p>
+                      <div class="container">
+                        <button type="button" class="btn btn-primary buy-button">Buy Now</button>
+                        <button type="button" class="btn btn-primary add-button">Add to cart</button>
+                    </div>
+                      
+                    </div>
+                  </div>
+              </div>
+              <div class="col col-products">
+                <div class="card card-products">
+                    <img src="\static\img\football.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <p class="card-title">Card title</p>
+                      <p class="text-muted p-0">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <p class="card-text">Price : $20</p>
+                      <div class="container">
+                        <button type="button" class="btn btn-primary buy-button">Buy Now</button>
+                        <button type="button" class="btn btn-primary add-button">Add to cart</button>
+                    </div>
+                      
+                    </div>
+                  </div>
+              </div>
+              <div class="col col-products">
+                <div class="card card-products">
+                    <img src="\static\img\football.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <p class="card-title">Card title</p>
+                      <p class="text-muted p-0">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <p classs="card-text">Price : $20</p>
+                      <div class="container">
+                        <button type="button" class="btn btn-primary buy-button">Buy Now</button>
+                        <button type="button" class="btn btn-primary add-button">Add to cart</button>
+                    </div>
+                      
+                    </div>
+                  </div>
+              </div>
+ -->
+             
+            
+            </div>
+          </div>
+    </div>
+
+</div>
+
+<!---------------------------------------------------->
+<div class="mobile-main-div">
+    <div class="search-bar-mobile">
+    <div class="input-group input-search-box">
+        <input type="text" class="form-control" placeholder="What are you looking for?" aria-label="Search" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button">Search</button>
+        </div>
+    </div>
+</div>
+<button class="btn btn-primary filter-btn">Filter</button>
+
+<div class="cards-main-div">
+
+    <div class="card">
+        <img src="\static\img\football.png" class="card-img-top" alt="...">
+        <div class="card-body">
+          <p class="card-title">Card title</p>
+          <p class="text-muted p-0">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <p class="card-text">Price : $20</p>
+          <div class="container">
+            <button type="button" class="btn btn-primary buy-button">Buy Now</button>
+            <button type="button" class="btn btn-primary add-button">Add to cart</button>
+        </div>
+        </div>
+      </div>
+      <br>
+      <div class="card">
+        <img src="\static\img\football.png" class="card-img-top" alt="...">
+        <div class="card-body">
+          <p class="card-title">Card title</p>
+          <p class="text-muted p-0">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <p class="card-text">Price : $20</p>
+          <div class="container">
+            <button type="button" class="btn btn-primary buy-button">Buy Now</button>
+            <button type="button" class="btn btn-primary add-button">Add to cart</button>
+        </div>
+          
+        </div>
+      </div>
+<br>
+      <div class="card">
+        <img src="\static\img\football.png" class="card-img-top" alt="...">
+        <div class="card-body">
+          <p class="card-title">Card title</p>
+          <p class="text-muted p-0">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <p class="card-text">Price : $20</p>
+          <div class="container">
+            <button type="button" class="btn btn-primary buy-button">Buy Now</button>
+            <button type="button" class="btn btn-primary add-button">Add to cart</button>
+        </div>
+          
+        </div>
+      </div>
+</div>
+</div>
+{% endblock content %}
