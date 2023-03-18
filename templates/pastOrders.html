@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/pastOrders.css' %}">
+
+<div class="past-order-main">
+    <div class="past-order-header">
+        <br>
+
+        Past Orders
+    </div>
+    <div class="past-order-cards">
+    <div class="container">
+        {% if nopastorders == False %}
+        {% for ord in allOrders %}
+        <div class="row row-3">
+            <div class="col">
+                <div class="card past-card" style="width: 18rem;">
+                   <!--  <img src="{{ord.image.url}}" class="card-img-top" alt="..."> -->
+                    <p>{{ord.image.url}}</p>
+                    <div class="card-body">
+                      <p class="card-title">{{ord.orderTitle}}</p>
+                      <p class="card-text">{{ord.orderDesc}}</p>
+                      <p class="card-text card-price-tag"><span style="font-weight: 500;">{{ord.orderPrice}}</span> $20</p>
+                      <hr>
+                      <p class="card-text card-delivered">Successfully <span style="font-weight: 500;">{{ord.status}}</span></p>
+                    </div>
+                  </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="description text-center">
+
+                <h1>No past Orders..</h1>
+            </div>
+            {% endif %}
+            
+        </div>
+    </div>
+    
+    </div>
+    
+</div>
+
+{% endblock %}

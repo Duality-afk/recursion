@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/track.css' %}">
+
+<div class="container" id="mainwrapper" >
+    <div class="row">
+        <div class="col-12 col-md-10 hh-grayBox pt45 pb20">
+                <div class="row justify-content-between">
+                    {% if noorder == False %}
+                    
+                   
+                    <div class="order-tracking completed">
+                        <span class="is-complete"></span>
+                        <p>Ordered<br><span>Mon, June 24</span></p>
+                    </div>
+                    {% for order in orderStatus %}
+                    {% if order.status == "Shipped" or order.status == "Delivered" %}
+                    <div class="order-tracking completed">
+                        <span class="is-complete"></span>
+                        <p>Shipped<br><span>Tue, June 25</span></p>
+                    </div>
+                    {% else %}
+                    <div class="order-tracking">
+                        <span class="is-complete"></span>
+                        <p>Shipped<br><span>Tue, June 25</span></p>
+                    </div>
+                    {% endif %}
+                 
+                    {% if order.status == "Delivered" %}
+                    <div class="order-tracking completed">
+                        <span class="is-complete"></span>
+                        <p>Delivered<br><span>Fri, June 28</span></p>
+                    </div>
+                    {% else %}
+                    <div class="order-tracking ">
+                        <span class="is-complete"></span>
+                        <p>Delivered<br><span>Tue, June 25</span></p>
+                    </div>
+                    {% endif %}
+                    
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+  </div>
+
+  <div class="order-summary">
+    <div class="order-summary-header text-center">
+        Order Summary
+    </div>
+
+    <div class="order-summary-main">
+        {% for order in orderStatus %}
+        <div class="order-desc">
+            <strong>Item:</strong> {{order.orderTitle}}
+        </div>
+        <div class="order-desc-add">
+            <strong>Description:</strong>  {{order.orderDesc}}
+        </div>
+        <div class="order-desc-price">
+            <strong>Total Price:</strong> {{order.orderPrice}}
+        </div>
+        {% endfor %}
+        <div class="estimated-date">
+            <strong>Will be delivered on:</strong>  18/04/2023
+        </div>
+    </div>
+
+    <div class="order-footer">
+        <span class="thankyou">Thank you!</span><br> For choosing our website for your recent purchase. Your support means everything to us and helps us to make a difference. 
+    </div>
+  </div>
+  {% else %}
+  <div class="description text-center">
+    <h1>No live orders..</h1>
+  <h6>"Experience the ultimate shopping satisfaction - Shop now on our website!"</h6>
+  </div>
+  
+  {% endif %}
+  
+{% endblock %}

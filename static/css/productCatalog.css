@@ -33,15 +33,16 @@
     margin-top: -0.5rem;
 }
 
-
 .card-img-top{
     height: 40vw;
     object-fit: cover;
 }
 
 .card{
+    height: 24rem;
     width: 18rem;
     margin: auto;
+    margin-top: 2rem !important;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
@@ -73,6 +74,7 @@
 /*Desktop Divs */
 .product-main-div{
     visibility: hidden;
+    display: none;
 }
 
 
@@ -96,7 +98,7 @@
     
     .product-main-div{
         font-size: 0.9rem;
-
+        display: flex !important;
     }
     
     .product-filter-col{
@@ -153,6 +155,7 @@
     /*Mobile Divs*/
     .cards-main-div{
         visibility: hidden;
+        display: none;
     }
 
     .filter-btn{

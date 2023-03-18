@@ -22,20 +22,44 @@ class MiddlewareMixin:
 class ActivityMiddleware(MiddlewareMixin):
     def process_view(self, request, view_func, view_args, view_kwargs):
         # Track visits on a page
+        
         if request.user.is_authenticated:
-            # Get the resolved view name and check if it matches any of your tracked pages
-            resolved_view_name = resolve(request.path_info).view_name
-            print(resolved_view_name)
-            tracked_pages = ['home', 'blog-post', 'profile']
-            if resolved_view_name in tracked_pages:
-                # Create a new UserActivity instance and save it to the database
+            tracked_pages = ['fc-barcelona-limited-edition-jersey',
+                             'adidas-x-speedportal-firm-ground-boots',
+                             'oceaunz-pro-football',
+                             'argentina-22-home-shorts',
+                             'messi-club-shin-guards',
+                             'babolat-pure-strike-vs',
+                             'asics-court-ff-3-novak-mens-shoe-tuna-blue-wh',
+                             'yonex-tour-platinum-balls-dozen-3-cans-of-4-ball',
+                             'babolat-powergy-16-string-reel-200-m',
+                             'mcdavid-shoulder-wrap-black'
+                             ]
+
+            slug_value = view_kwargs.get('slug')
+            print(slug_value)
+            if slug_value:
                 activity = UserActivity(
-                    user=request.user,
-                    activity_type='page_visit',
-                    activity_details=resolved_view_name
+                user=request.user,
+                activity_type='page_visit',
+                activity_details=slug_value
                 )
-                print("jbdsfkdjsb")
-                activity.save()
+                activity.save()     
+                slug_value = ''         
+            # Here, you can save the slug value to the database using your model
+            # or perform other actions as needed
+
+            # Get the resolved view name and check if it matches any of your tracked pages
+            # resolved_view_name = resolve(request.path_info).url_name
+            # tracked_pages = ['football', 'cricket', 'productCatalog', ]
+            # if resolved_view_name in tracked_pages:
+            #     # Create a new UserActivity instance and save it to the database
+            #     activity = UserActivity(
+            #         user=request.user,
+            #         activity_type='page_visit',
+            #         activity_details=resolved_view_name
+            #     )
+            #     activity.save()
     
     # def process_response(self, request, response):
     #     # Track likes on a post

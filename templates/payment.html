@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- <form method="POST" >
+{% csrf_token %}
+<div class="row col-sm-12 col-md-12" style="margin-top:100px " >
+          
+            <div class="col-lg-12 col-md-12">
+                <div class="blog_items" >
+                   <center><div class="blog_img_box col-lg-12 col-md-12" style="height: 300px; width: 450px">
+                        <img  style="height: 750px; width: 500px" class="img-fluid" src="{{prod.image.url}}" alt="" >
+                    </div></center>
+                    <div class="blog_content">
+                       <center> <a class="title" style="color: blue" >{{prod.name}}</a></center>
+                        <center><p>Rs. {{prod.price}}</p></center>
+
+             
+                        
+      <center><div class="form-group col-sm-12 col-md-6">
+        <label for="exampleFormControlInput1">Name</label>
+        <input type="Name" class="form-control " id="exampleFormControlInput1" placeholder="Enter Name" name="name">   
+      </div></center>
+    
+     <center> <div class="form-group col-sm-12 col-md-6">
+        <label for="exampleFormControlInput1">Phone no</label>
+        <input type="phone" class="form-control" id="exampleFormControlInput1" placeholder="Enter Phone No" name="phone">
+      </div></center>
+
+      <center><div class="form-group col-sm-12 col-md-6">
+        <label for="exampleFormControlTextarea1">Address</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Enter Address" name="address"></textarea>
+      </div></center><br/>
+
+        <center>
+       <div class="col-sm-12 col-md-3">
+       <label for="exampleFormControlInput1">Payment Mode</label>
+       <select  aria-label=".form-select-sm example" name="mode" style="text-align:center">
+            <option selected value="Online">Online</option>
+            <option value="Offline">Offline</option> 
+       </select>
+       </div> 
+       </center>  <br/> 
+      
+      <center>
+      <div class="col-sm-12 col-md-3">
+      <label for="exampleFormControlInput1">Size</label>
+       <select  aria-label=".form-select-sm example" name="size" style="text-align:center">
+            <option selected value="32">32</option>
+            <option value="34">34</option> 
+            <option value="34">36</option> 
+            <option value="38">38</option> 
+            <option value="40">40</option> 
+            <option value="42">42</option> 
+
+       </select>
+       </div> 
+       </center>  <br/><br/><br/> 
+     
+      
+      <center><button type="submit" class="btn btn-dark btnsubmit col-sm-5 col-md-2"  style="margin-bottom:20px; margin-top:20px" id="one" onclick="show()" >Buy</button> </center>
+      <center><label for="exampleFormControlInput1">For Online Payment</label></center>
+      <center><button type="button" class="btn btn-primary col-sm-5 col-md-2" id="rzp-button1" style="margin-bottom:30px" >Pay</button></center>
+</form>              
+ -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "{{api_key}}", // Enter the Key ID generated from the Dashboard
+    "currency": "INR",
+    "name": "GamesNation",
+    "description": "Online Payment",
+    "image": "{% static 'base/img/logo.jpg' %}",
+    "order_id":"{{order_id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "handler": function (response){
+        alert(response.razorpay_payment_id);
+        alert(response.razorpay_order_id);
+        alert(response.razorpay_signature)
+    },
+    "prefill": {
+        "name": "Gaurav Kumar",
+        "email": "gaurav.kumar@example.com",
+        "contact": "9999999999",
+        "address": "E-1203 Anmol Fortune" 
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+rzp1.on('payment.failed', function (response){
+        alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);
+});
+document.getElementById('rzp-button1').onclick = function(e){
+    rzp1.open();
+    e.preventDefault();
+}
+
+  
+</script>
+                        {% comment %} <p> ugndnummbf</p>
+                        <div class="date">
+                            <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>{{news.timeStamp}} </a>
+                            <a href="/newspost/{{news.slug}}"><i class="fa fa-comments-o" aria-hidden="true"></i> Continue..</a>
+                        </div> {% endcomment %}
+                    </div>
+                </div>
+            </div>
+         
+        </div>
+
+
+
+{% endblock content %}

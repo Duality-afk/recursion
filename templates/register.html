@@ -1,44 +1,31 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<link rel ="stylesheet" href="{% static 'css/login.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 
-<div id="login-form-wrap">
-    <h2>Register</h2>
-    <form id="login-form"  method= "POST">
-        {% csrf_token %}
-      <p>
-      <input type="text" id="username" name="username" placeholder="Username" required><i class="validation"><span></span><span></span></i>
-      </p>
-      <p>
-        <input type="text" id="email" name="email" placeholder="Email" required><i class="validation"><span></span><span></span></i>
-      </p>
-      <!-- <p>
-        <input type="text" id="username" name="phoneno" placeholder="Phone Number" required><i class="validation"><span></span><span></span></i>
-      </p>
-      <p>
-        <input type="text" id="usrname" name="address" placeholder="Address" required><i class="validation"><span></span><span></span></i>
-      </p> -->
-      <p>
-        <input type="password" id="username" name="password1" placeholder="Password" required><i class="validation"><span></span><span></span></i>
-      </p>
-      <p>
-        <input type="password" id="username" name="password2" placeholder=" Confirm Password" required><i class="validation"><span></span><span></span></i>
-      </p>
-      <p>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </p>
-     
-    </form>
+<br>
 
-    <div id="create-account-wrap">
-       <p>Already Have a Account?<a href="/login">Login</a><p>
-    </div><!--create-account-wrap-->
-  </div><!--login-form-wrap-->
-
-  <div>
-    {% for message in messages %}
-    <center><h3> {{message}} </h3></center>
-    {% endfor %}
+<div class="login">
+<br><br><br>
+<center>
+<img src="\static\img\login-header.jpg" class="login-header-image">
+</center>
+<div class="login-heading">
+    Get in! And buy from the best.
 </div>
-  
-  {% endblock content %}
+<div class="well login-box center-block">
+    <form name="login" method = "POST">
+      {% csrf_token %}
+      <input type="text" class="form-control" placeholder="Username" name="username" />
+      <input type="email" class="form-control" id="pass" placeholder="Email" name="email" />
+      <input type="password" class="form-control" id="pass" placeholder="Password" name="password1" />
+      <input type="password" class="form-control" id="pass" placeholder="Password" name="password2" />
+      <button class="btn btn-primary" type="submit">Register</button>
+      <br>
+      <p>New user?<a href="/login" class="forgot-password"> Login</a></p>
+  </div>
+  </form>
+  </div>
+
+{% endblock content %}

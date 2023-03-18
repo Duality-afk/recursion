@@ -1,5 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
+from autoslug import AutoSlugField
+import uuid
+
+
+
+
 class Register(models.Model):
     name = models.CharField(max_length=255),
     password = models.CharField(max_length= 20),
@@ -17,21 +23,17 @@ class Category(models.Model):
         return Category.objects.all()
 
     def __str__(self):
-                return 'This is ' +self.name 
+                return self.name 
 
 class ProdCat(models.Model):
     product_id=models.AutoField
-
     image = models.ImageField(upload_to="images/", null=True)
     name = models.CharField(max_length=50, null=True)
     desc = models.CharField(max_length=255)
     price = models.IntegerField(default=0)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
+    slug =  AutoSlugField(populate_from='name', null=True)
 
-class Paymemnt(models.Model):
-    payment_status = models.BooleanField(default=False)
-    mode = models.CharField(max_length=255)
-    delivered = models.BooleanField(default=False)
 
 
 class Customer(models.Model):
@@ -42,7 +44,6 @@ class Customer(models.Model):
      def __str__(self):
           return self.name
      
-
 class Order(models.Model):
 	customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)
 	date_ordered = models.DateTimeField(auto_now_add=True)
@@ -79,5 +80,44 @@ class OrderItem(models.Model):
 class UserActivity(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     activity_type = models.CharField(max_length=50)
-    activity_details = models.CharField(max_length=500)
+    activity_details = models.CharField(max_length=1000)
     created_at = models.DateTimeField(auto_now_add=True)
+
+ORDER_STATUS = (
+    ('Ordered','ORDERED'),
+    ('Shipped', 'SHIPPED'),
+    ('Delivered','DELIVERED'),
+)
+
+DELIVERY_STATUS = (
+    ('Successful','Successful'),
+    ('Unsuccessful', 'Unsuccessful'),  
+)
+
+
+class Track(models.Model):
+      username = models.CharField(max_length=255,default="")
+      orderTitle = models.CharField(max_length=255,default="")
+      orderDesc = models.CharField(max_length=255, default="")
+      orderPrice = models.CharField(max_length=255, default="")
+      image = models.ImageField(upload_to="images/", null=True)
+      status = models.CharField(max_length=10, choices=ORDER_STATUS, default='Ordered')
+      deliverystatus = models.CharField(max_length=50,choices=DELIVERY_STATUS, default="Successful")
+
+
+
+""" class Payment(models.Model):
+        sno = models.AutoField(primary_key=True)
+        name = models.CharField(max_length=255)
+        phone = models.CharField(max_length=12)
+        address = models.CharField(max_length=255)
+        mode = models.CharField(max_length=255)
+        size = models.IntegerField(default=32, null=True)
+        payment_status = models.BooleanField(default=False)
+        delivered = models.BooleanField(default=False)
+
+        def __str__(self):
+                return 'Product brought by ' +self.name  """
+
+    
+  

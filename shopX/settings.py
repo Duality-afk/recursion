@@ -25,8 +25,8 @@ SECRET_KEY = 'django-insecure-kc0o07uvhgy5m@qwo#8agr)#84^fsn-io*3&rf@9^-@@4g!w*5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["*"]
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 # Application definition
 
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -48,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'HomeModule.middlewares.ActivityMiddleware'
 ]
 
 ROOT_URLCONF = 'shopX.urls'
@@ -131,3 +133,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "images/")
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+RAZORPAY_API_KEY = 'rzp_test_1IYlVy7eIALcLw'
+RAZORPAY_API_SECRET_KEY = 'MSvAiKYtBKESsuqlTas4NgmY'

@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel ="stylesheet" href="{% static 'css/productDetail.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<br><br>
+<!-- <div class="container container-products">
+<div class="row row-cols-4 row-products">
+<div class="col col-products ">      
+    <div class="card card-products">
+        <img src="{{reg.image.url}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <p class="card-title">{{reg.name}}</p>
+          <p class="text-muted p-0">{{reg.desc}}</p>
+          <p class="card-text">${{reg.price}}</p>
+          <div class="container">
+            <button type="button" class="btn btn-primary buy-button">Buy Now</button>
+            <a href="#" class="btn "><button type="button" class="btn btn-primary buy-button">Add To Cart</button></a>  
+        </div>
+        </div>
+    </div>
+</div> -->
+
+
+<div class="container mt-5 mb-5" style="box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;">
+  <div class="row d-flex justify-content-center">
+      <div class="col-md-12">
+          <div class="card">
+              <div class="row">
+                  <div class="col-md-6">
+                      <div class="images p-3">
+                          <div class="text-center p-4"> <img id="main-image" src="{{reg.image.url}}" width="250" /> </div>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="product p-4">
+                          
+                          <div class="mt-4 mb-3"> <span class="text-uppercase text-muted brand">{{reg.category}}</span>
+                              <h5 class="text-uppercase">{{reg.name}}</h5>
+                              <div class="price d-flex flex-row align-items-center"> <span class="act-price"> ₹{{reg.price}}</span>
+                              </div>
+                          </div>
+                          <p class="about">{{reg.desc}}</p>
+                          {% if user.is_authenticated %}
+                          <div class="cart mt-4 align-items-center"><button id="rzp-button1" class="btn btn-danger text-uppercase mr-2 px-4">Buy Now</button></div>
+                          {% else %}
+                          <div class="cart mt-4 align-items-center"><button id="" class="btn btn-danger text-uppercase mr-2 px-4">Buy Now</button></div>
+                          {% endif %}
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+   
+      <!-- Product Configuration -->
+      <div class="product-configuration">
+   
+        <!-- 
+        <div class="product-color">
+          <span>Color</span>
+   
+          <div class="color-choose">
+            <div>
+              <input data-image="red" type="radio" id="red" name="color" value="red" checked>
+              <label for="red"><span></span></label>
+            </div>
+            <div>
+              <input data-image="blue" type="radio" id="blue" name="color" value="blue">
+              <label for="blue"><span></span></label>
+            </div>
+            <div>
+              <input data-image="black" type="radio" id="black" name="color" value="black">
+              <label for="black"><span></span></label>
+            </div>
+          </div>
+   
+        </div>
+   
+        
+        <div class="cable-config">
+          <span>Cable configuration</span>
+   
+          <div class="cable-choose">
+            <button>Straight</button>
+            <button>Coiled</button>
+            <button>Long-coiled</button>
+          </div>
+   
+          <a href="#">How to configurate your headphones</a>
+        </div>
+      </div> -->
+   <!-- 
+      <!-- Product Pricing -->
+  </main>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>
+  var options = {
+      "key": "{{api_key}}", // Enter the Key ID generated from the Dashboard
+      "currency": "INR",
+      "name": "GamesNation",
+      "description": "Online Payment",
+      "image": "{% static 'base/img/logo.jpg' %}",
+      "order_id":"{{order_id}}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+      "handler": function (response){
+          alert(response.razorpay_payment_id);
+          alert(response.razorpay_order_id);
+          alert(response.razorpay_signature)
+      },
+      "prefill": {
+          "name": "Gaurav Kumar",
+          "email": "gaurav.kumar@example.com",
+          "contact": "9999999999",
+          "address": "E-1203 Anmol Fortune" 
+      },
+      "notes": {
+          "address": "Razorpay Corporate Office"
+      },
+      "theme": {
+          "color": "#3399cc"
+      }
+  };
+  var rzp1 = new Razorpay(options);
+  rzp1.on('payment.failed', function (response){
+          alert(response.error.code);
+          alert(response.error.description);
+          alert(response.error.source);
+          alert(response.error.step);
+          alert(response.error.reason);
+          alert(response.error.metadata.order_id);
+          alert(response.error.metadata.payment_id);
+  });
+  document.getElementById('rzp-button1').onclick = function(e){
+      rzp1.open();
+      e.preventDefault();
+  }
+  
+    
+  </script>
+                        
+
+
+<script type="text/javascript" src="{% static 'js/product.js' %}" ></script>
+
+
+{% endblock content %}
